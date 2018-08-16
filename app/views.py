@@ -6,6 +6,7 @@ all_questions = []
 all_answers = []
 
 
+
 @app.route("/api/v1/questions", methods=["POST"])
 # posting a single question
 def post_question():
@@ -28,4 +29,4 @@ def get_all_questions():
                 question.__dict__ for question in all_questions
             ]
         }),200
-    return jsonify({"message":"No Question has been posted yet"}), 404
+    return jsonify({"message":"No Question has been posted yet"}), 40
