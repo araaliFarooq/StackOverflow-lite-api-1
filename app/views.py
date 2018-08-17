@@ -87,7 +87,7 @@ def post_answer(question_id):
             "message":"Answer successfully posted to question",
             "Question answered":[     
                 all_questions[question]["question"]
-            ]}),200
+            ]}),201
     return jsonify({
         "message":"No such question is available",
     }),400
@@ -101,4 +101,4 @@ def get_all_answers():
                 answer.__dict__ for answer in all_answers
             ]
         }),200
-    return jsonify({"message":"No aswer has been posted yet"}), 404
+    return jsonify({"message":"No answer has been posted yet"}), 404
