@@ -3,7 +3,6 @@ from flask import request, jsonify, json
 from app.models import Answer, Question
 
 all_questions = []
-all_answers = []
 
 
 @app.route("/api/v1/questions", methods=["POST"])
