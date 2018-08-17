@@ -45,3 +45,23 @@ def get_a_question(question_id):
     return jsonify({
         "message":"No such question is available",
     }),400
+
+
+@app.route("/api/v1/questions/<question_id>/answer", methods=["POST"])
+# answering a specific question
+def post_answer(question_id):
+    data = request.get_json()
+    answer = data.get("answer")
+    for question in range(len(all_questions)):
+        if ((all_questions[question]["qstn_id"]) == int(question_id)):
+            ans_id = len(all_answers) + 1
+            new_answer = Answer(ans_id, answer, question_id)
+            all_answers.append(new_answer)
+            return jsonify({
+            "message":"Answer successfully posted to question",
+            "Question answered":[     
+                all_questions[question]["question"]
+            ]}),200
+    return jsonify({
+        "message":"No such question is available",
+    }),400
