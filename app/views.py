@@ -29,3 +29,19 @@ def get_all_questions():
             ]
         }),200
     return jsonify({"message":"No Question has been posted yet"}), 404
+
+
+@app.route("/api/v1/questions/<question_id>", methods=["GET"])
+# get a specific question
+def get_a_question(question_id):
+    for question in range(len(all_questions)):
+        if ((all_questions[question]["qstn_id"]) == int(question_id)):
+            return jsonify({
+            "message":"Successfully viewed Question",
+            "Question":[     
+                all_questions[question]["question"]
+            ]
+    }),200
+    return jsonify({
+        "message":"No such question is available",
+    }),400
