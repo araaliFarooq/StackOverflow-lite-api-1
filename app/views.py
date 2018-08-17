@@ -65,3 +65,14 @@ def post_answer(question_id):
     return jsonify({
         "message":"No such question is available",
     }),400
+
+@app.route("/api/v1/answers", methods=["GET"])
+def get_all_answers():
+    if len(all_answers) > 0:
+        return jsonify({
+            "message":"Successfully viewed Answers",
+            "Available answers":[     
+                answer.__dict__ for answer in all_answers
+            ]
+        }),200
+    return jsonify({"message":"No aswer has been posted yet"}), 404
