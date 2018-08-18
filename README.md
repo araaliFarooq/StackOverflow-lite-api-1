@@ -24,7 +24,7 @@ This is an API for a Q&A application that allows users, register on the applicat
 Python 2.7.x - 3.x.x+
 ## Run (Use) on your local machine
 First clone the repository
-```
+```sh
    $ git clone https://github.com/araaliFarooq/StackOverflow-lite-api-1
    ```
    Head over to the cloned directory, create a virtual environment, use pip to install the requirements, then run the app
@@ -34,7 +34,7 @@ First clone the repository
     $ source env/bin/activate
     $ pip install -r requirements.txt
     $ python run.py
-
+```
 
 #### Endpoints to create, read user ride offers and requests
 HTTP Method|End point | Public Access|Action
