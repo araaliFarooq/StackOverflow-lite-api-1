@@ -1,4 +1,4 @@
-astroid==1.6.5
+pipastroid==1.6.5
 backports.functools-lru-cache==1.5
 click==6.7
 configparser==3.5.0
@@ -17,3 +17,5 @@ singledispatch==3.4.0.3
 six==1.11.0
 Werkzeug==0.14.1
 wrapt==1.10.11
+pytest==3.7.1
+pytest-cov==2.5.1
