@@ -22,7 +22,12 @@ def post_question():
 
     new_question = Question(qstn_id , question)
     all_questions.append(new_question)
-    return jsonify({"message":"New question successfully posted"}), 201
+
+    for question in range(len(all_questions)):
+        if ((all_questions[question]["qstn_id"]) == int(qstn_id)):
+            return jsonify({"message":"New question successfully posted",
+            "Question":all_questions[question]["question"]
+            }), 201
 
 
 @app.route("/api/v1/questions", methods=["GET"])
@@ -50,10 +55,10 @@ def get_a_question(question_id):
     for question in range(len(all_questions)):
         if ((all_questions[question]["qstn_id"]) == int(_id)):
             return jsonify({
-            "message":"Successfully viewed Question",
-            "Question":[     
+            
+            "Question":    
                 all_questions[question]["question"]
-            ]
+            
     }),200
     return jsonify({
         "message":"No such question is available",
