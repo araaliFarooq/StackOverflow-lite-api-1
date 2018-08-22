@@ -39,7 +39,7 @@ class Test_Viewing_Questions(unittest.TestCase):
         content_type='application/json',
             data=reply)
         reply2 = json.loads(response2.data.decode())
-        self.assertEquals(reply2["message"],"Successfully viewed Question")
+        
         self.assertEquals(response2.status_code, 200)
 
 

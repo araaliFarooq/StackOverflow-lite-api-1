@@ -21,6 +21,9 @@ def post_question():
     if validation:
         return validation
 
+    if any(d["question"] == question for d in all_questions):
+        return jsonify({"message":"Question already exists, check it out for the asnwer"}), 409       
+
     new_question = Question(qstn_id , question)
     all_questions.append(new_question)
 
@@ -41,7 +44,7 @@ def get_all_questions():
                 question.__dict__ for question in all_questions
             ]
         }),200
-    return jsonify({"message":"No Question has been posted yet"}), 404
+    return jsonify({"message":"No Question has been posted yet"}), 204
 
 
 @app.route("/api/v1/questions/<question_id>", methods=["GET"])
@@ -63,7 +66,7 @@ def get_a_question(question_id):
     }),200
     return jsonify({
         "message":"No such question is available",
-    }),400
+    }),204
 
 
 @app.route("/api/v1/questions/<question_id>/answer", methods=["POST"])
@@ -83,6 +86,11 @@ def post_answer(question_id):
     if validation2:
         return validation2
 
+    if any(dy["answer"] == ans for dy in all_answers):
+        if any(xy["qstn_id"] == _id for xy in all_answers):
+            return jsonify({"message":"Answer already exists"}), 409
+
+
     for question in range(len(all_questions)):
         if ((all_questions[question]["qstn_id"]) == int(_id)):
             ans_id = len(all_answers) + 1
@@ -95,7 +103,7 @@ def post_answer(question_id):
             ]}),201
     return jsonify({
         "message":"No such question is available",
-    }),400
+    }),204
 
 @app.route("/api/v1/answers", methods=["GET"])
 def get_all_answers():
@@ -106,4 +114,4 @@ def get_all_answers():
                 answer.__dict__ for answer in all_answers
             ]
         }),200
-    return jsonify({"message":"No answer has been posted yet"}), 404
+    return jsonify({"message":"No answer has been posted yet"}), 204

@@ -2,3 +2,5 @@ env/
 *.pyc
 app/*.pyc
 .vscode/
+.coverage
+.pytest_cache/
