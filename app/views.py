@@ -21,6 +21,11 @@ def post_question():
     if validation:
         return validation
 
+    valid = validate.validate_type(question)
+    if valid:
+        return jsonify({"message":"Invalid question supplied, please try again"}), 400
+
+
     if any(d["question"] == question for d in all_questions):
         return jsonify({"message":"Question already exists, check it out for the asnwer"}), 409       
 
@@ -44,7 +49,8 @@ def get_all_questions():
                 question.__dict__ for question in all_questions
             ]
         }),200
-    return jsonify({"message":"No Question has been posted yet"}), 204
+    else:    
+        return jsonify({"message":"No Question has been posted yet"}), 400
 
 
 @app.route("/api/v1/questions/<question_id>", methods=["GET"])
@@ -114,4 +120,4 @@ def get_all_answers():
                 answer.__dict__ for answer in all_answers
             ]
         }),200
-    return jsonify({"message":"No answer has been posted yet"}), 204
+    return jsonify({"message":"No answer has been posted yet"}), 404
