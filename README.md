@@ -36,7 +36,7 @@ First clone the repository
     $ python run.py
 ```
 
-#### Endpoints to create, read user ride offers and requests
+#### Endpoints to create, read user questions and answers
 HTTP Method|End point | Public Access|Action
 -----------|----------|--------------|------
 POST | /api/v1/questions | False | Post a question
